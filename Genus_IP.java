@@ -2,50 +2,50 @@ package workshop;
 
 import java.awt.Button;
 import java.awt.FlowLayout;
-import java.awt.Label;
 import java.awt.Panel;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import jv.number.PuDouble;
 import jv.object.PsConfig;
 import jv.object.PsDialog;
 import jv.object.PsUpdateIf;
 import jvx.project.PjWorkshop_IP;
 
-public class Assignment1Task1_IP extends PjWorkshop_IP implements ActionListener {
+public class Genus_IP extends PjWorkshop_IP implements ActionListener {
 
 	protected Button m_bComputeGenus;
 	protected Label m_lGenus;
 	
-	Assignment1Task1 m_a1t1;
+	Genus m_genus;
 	
-	public Assignment1Task1_IP() {
+	public Genus_IP() {
 		super();
-		if(getClass() == Assignment1Task1_IP.class)
+		if(getClass() == Genus_IP.class)
 			init();
 	}
 	
 	public void init() {
 		super.init();
-		setTitle("Assignment 1 Task 1");
+		setTitle("Compute Genus");
 	}
 	
 	public String getNotice() {
-		return "This text should explain what the workshop is about and how to use it.";
+		return "By clicking the button below, you will get the genus of the current model.";
 	}
 	
 	public void setParent(PsUpdateIf parent) {
 		super.setParent(parent);
-		m_a1t1 = (Assignment1Task1)parent;
+		m_genus = (Genus)parent;
 	
-		addSubTitle("Example of a subtitle");
+		// addSubTitle("Example of a subtitle");
+		addSubTitle(" ");
 		
-		m_bComputeGenus = new Button("Compute genus");
+		m_bComputeGenus = new Button("Compute Genus");
 		m_bComputeGenus.addActionListener(this);
-		m_lGenus = new Label("label");
+		m_lGenus = new Label("NULL");
 		Panel panel1 = new Panel(new FlowLayout(FlowLayout.CENTER));
 		panel1.add(m_bComputeGenus);
 		panel1.add(m_lGenus);
@@ -54,22 +54,17 @@ public class Assignment1Task1_IP extends PjWorkshop_IP implements ActionListener
 		validate();
 	}
 	
-	
-	public boolean update(Object event) {
-			return super.update(event);
-	}
-	
 	/**
 	 * Handle action events fired by buttons etc.
 	 */
 	public void actionPerformed(ActionEvent event) {
 		Object source = event.getSource();
 		if (source == m_bComputeGenus) {
-			int genus = m_a1t1.computeGenus();
+			int genus = m_genus.computeGenus();
 			m_lGenus.setText(Integer.toString(genus));
-			m_a1t1.m_geom.update(m_a1t1.m_geom);
+			m_genus.m_geom.update(m_genus.m_geom);
 			return;
-		}
+		}		
 	}
 	/**
 	 * Get information which bottom buttons a dialog should create
